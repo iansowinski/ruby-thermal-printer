@@ -1,16 +1,9 @@
 require 'rubyserial'
 
 class Printer
-    @@SerialPort = '/dev/ttyAMA0'
-    @@BaudRate = 19200
-    @@TimeOut = 3
-    @@black_threshold = 48
-    @@alpha_threshold = 127
-    @@printer = nil
     @@ESC = 27.chr
-
-    def initialize (heatTime=80, heatInterval=2, heatingDots=7, serialport=@@SerialPort)
-          @printer = Serial.new(@@SerialPort, @@BaudRate)
+    def initialize (serial_port='/dev/ttyAMA0', baudrate=19200, heatTime=80, heatInterval=2, heatingDots=7)
+          @printer = Serial.new(serial_port, baudrate)
           @printer.write(@@ESC)
           @printer.write(64.chr)
           @printer.write(@@ESC)
@@ -27,7 +20,9 @@ class Printer
     def write (args)
       @printer.write(args)
     end
-
+    private
+    def clear
+    end
 end
 
 printer = Printer.new

@@ -1,3 +1,3 @@
 # Ruby thermal printer
 
-Little ruby library for dealing with POS/ESC thermal printers.
+Little ruby library for dealing with ESC/POS thermal printers.
