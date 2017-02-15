@@ -88,6 +88,3 @@ class Printer
 #    @printer.write(35.chr)
 #    @printer.write(((printDensity << 4) | printBreakTime).chr)
 end
-
-printer = Printer.new
-printer.write('Hello World')
