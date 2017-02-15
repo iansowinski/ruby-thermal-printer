@@ -2,7 +2,7 @@ require 'rubyserial'
 class Printer
   attr_accessor
   @@ESC = 27.chr
-  def initialize (serial_port='/dev/ttyAMA0', baudrate=19200, heatTime=80, heatInterval=2, heatingDots=7))
+  def initialize (serial_port='/dev/ttyAMA0', baudrate=19200, heatTime=80, heatInterval=2, heatingDots=7)
     @printer = Serial.new(serial_port, baudrate)
     # for initializing printer
     @printer.write(@@ESC)
