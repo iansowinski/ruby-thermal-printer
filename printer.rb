@@ -3,7 +3,7 @@ class Printer
   @@ESC = 27.chr
   def initialize (serial_port='/dev/ttyAMA0', baudrate=19200)
     @printer = Serial.new(serial_port, baudrate)
-    # for initializing printer
+i    # for initializing printer
     @printer.write(@@ESC)
     @printer.write(64.chr)
   end
@@ -12,37 +12,37 @@ class Printer
   end
   # character mode settings
   def font_b (string)
-    set_characters("1")
+    set_characters(1)
     @printer.write(string)
     clear
   end
   def invert (string)
-    set_characters("2")
+    set_characters(2)
     @printer.write(string)
     clear
   end
   def upside_down (string)
-    set_characters("4")
+    set_characters(4)
     @printer.write(string)
     clear
   end
   def emphasize (string)d
-    set_characters("8")
+    set_characters(8)
     @printer.write(string)
     clear
   end
   def double_height (string)
-    set_characters("16")
+    set_characters(16)
     @printer.write(string)
     clear
   end
   def double_width (string)
-    set_characters("32")
+    set_characters(32)
     @printer.write(string)
     clear
   end
   def deleteline (string)
-    set_characters("64")
+    set_characters(64)
     @printer.write(string)
     clear
   end
@@ -50,8 +50,8 @@ class Printer
   # function to clear character mode settings
   def clear
     @printer.write(@@ESC)
-    @printer.write("!")
-    @printer.write("0")
+    @printer.write(33.chr)
+    @printer.write(0.chr)
   end
   # function to set character mode
   def set_characters (mode)
@@ -72,8 +72,8 @@ class Printer
 #      mode = "64"
 #    end
     @printer.write(@@ESC)
-    @printer.write("!")
-    @printer.write(mode)
+    @printer.write(33.chr)
+    @printer.write(mode.chr)
   end
 #  def no_name_function (heatTime=80, heatInterval=2, heatingDots=7)
 #  don't know what to do with this. It's for setting up bitmapsk  
