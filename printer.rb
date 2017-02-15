@@ -1,5 +1,6 @@
 require 'rubyserial'
 class Printer
+  attr_accessor
   @@ESC = 27.chr
   def initialize (serial_port='/dev/ttyAMA0', baudrate=19200)
     @printer = Serial.new(serial_port, baudrate)
@@ -15,36 +16,43 @@ class Printer
     set_characters(1.chr)
     @printer.write(string)
     clear
+    linefeed
   end
   def invert (string)
     set_characters(2.chr)
     @printer.write(string)
     clear
+    linefeed
   end
   def upside_down (string)
     set_characters(4.chr)
     @printer.write(string)
     clear
+    linefeed
   end
-  def emphasize (string)d
+  def emphasize (string)
     set_characters(8.chr)
     @printer.write(string)
     clear
+    linefeed
   end
   def double_height (string)
     set_characters(16.chr)
     @printer.write(string)
     clear
+    linefeed
   end
   def double_width (string)
     set_characters(32.chr)
     @printer.write(string)
     clear
+    linefeed
   end
   def deleteline (string)
     set_characters(64.chr)
     @printer.write(string)
     clear
+    linefeed
   end
   private
   # function to clear character mode settings
@@ -52,6 +60,9 @@ class Printer
     @printer.write(@@ESC)
     @printer.write(33.chr)
     @printer.write(0.chr)
+  end
+  def linefeed
+    @printer.write(10.chr)
   end
   # function to set character mode
   def set_characters (mode)
